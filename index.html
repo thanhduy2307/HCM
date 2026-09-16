@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story Map: Hành trình tư tưởng của Bác qua các bước ngoặt lịch sử</title>
+  <meta name="description" content="Story Map tương tác giáo dục lịch sử: Hành trình tư tưởng của Bác qua các bước ngoặt lịch sử từ Làng Sen đến Tuyên ngôn Độc lập.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       THANH ĐIỀU HƯỚNG NỔI TRÊN ĐỈNH (MINIMALIST FLOATING BAR)
+       ========================================================= -->
+  <nav class="top-nav-bar">
+    <div class="nav-brand">
+      <div class="brand-star-badge">★</div>
+      <div class="brand-title">HÀNH TRÌNH TƯ TƯỞNG CỦA BÁC</div>
+    </div>
+
+    <div class="nav-controls">
+      <!-- Tiến độ hành trình -->
+      <div class="nav-progress-pill">
+        <span>👣</span>
+        <div class="progress-track">
+          <div id="storyProgressFill" class="progress-fill"></div>
+        </div>
+        <span id="storyProgressText">Mốc: 0/9 • 0/27 câu</span>
+      </div>
+
+      <!-- Tiện ích -->
+      <button id="btnSoundToggle" class="nav-btn" title="Bật/Tắt âm thanh tương tác">
+        🔊 Âm thanh
+      </button>
+
+      <button id="btnOpenEditor" class="nav-btn btn-accent" title="Quản lý và bổ sung câu hỏi">
+        ✏️ Quản lý câu hỏi
+      </button>
+
+      <button id="btnViewReference" class="nav-btn" title="Xem ảnh thiết kế infographic gốc">
+        🗺️ Xem ảnh mẫu
+      </button>
+
+      <button id="btnResetProgress" class="nav-btn" title="Chơi lại từ chặng 1">
+        🔄 Chơi lại
+      </button>
+    </div>
+  </nav>
+
+  <!-- =========================================================
+       CANVAS BẢN ĐỒ POSTER STORY MAP UỐN LƯỢN LIÊN TỤC
+       ========================================================= -->
+  <main class="poster-viewport">
+    <div class="poster-canvas" id="posterCanvas">
+
+      <!-- LỚP SVG VẼ ĐƯỜNG UỐN LƯỢN CHỮ S & CÁC DẤU BƯỚC CHÂN TỰ NHIÊN -->
+      <svg id="storyRoadSvg" class="story-road-svg" xmlns="http://www.w3.org/2000/svg">
+        <g id="roadTrailsGroup"></g>
+        <g id="roadFootstepsGroup"></g>
+      </svg>
+
+      <!-- HEADER POSTER: TIÊU ĐỀ & CHÂN DUNG BÁC HỒ NGUYÊN BẢN -->
+      <header class="poster-header">
+        <div class="header-left">
+          <img src="plane_doodle.png" alt="Máy bay giấy" class="plane-doodle-img">
+          <h1 class="poster-title-main">
+            Hành trình tư tưởng
+            <span class="poster-title-sub">qua các bước ngoặt lịch sử</span>
+          </h1>
+          <p class="poster-tagline">
+            Từ một người yêu nước trở thành người sáng lập nên hệ thống tư tưởng vĩ đại – Hồ Chí Minh
+          </p>
+        </div>
+
+        <div class="header-right">
+          <div class="header-quote-wrap">
+            <p class="quote-text">
+              “Tư tưởng Hồ Chí Minh là kết quả của cả một quá trình đấu tranh, tìm tòi, khám phá và phát triển không ngừng”
+            </p>
+            <span class="quote-author">— Hồ Chí Minh</span>
+          </div>
+          <div class="header-bac-portrait">
+            <img src="portrait_bac_ho_sketch.png" alt="Chân dung Bác Hồ">
+          </div>
+        </div>
+      </header>
+
+      <!-- =========================================================
+           LỘ TRÌNH 3 HÀNG DỌC THEO ĐƯỜNG UỐN LƯỢN CHỮ S
+           CÁC CỘT MỐC ĐẶT TRỰC TIẾP TRÊN BẢN ĐỒ - HOÀN TOÀN KHÔNG DÙNG CARD
+           ========================================================= -->
+      <div class="map-flow-container">
+
+        <!-- HÀNG 1: CHẶNG 1 ➔ 2 ➔ 3 (Trái sang Phải) -->
+        <div class="map-tier tier-1">
+          <div class="milestone-anchor" id="node-1"></div>
+          <div class="milestone-anchor" id="node-2"></div>
+          <div class="milestone-anchor" id="node-3"></div>
+        </div>
+
+        <!-- HÀNG 2: CHẶNG 6 🠔 5 🠔 4 (Phải sang Trái theo hình chữ S) -->
+        <div class="map-tier tier-2">
+          <div class="milestone-anchor" id="node-6"></div>
+          <div class="milestone-anchor" id="node-5"></div>
+          <div class="milestone-anchor" id="node-4"></div>
+        </div>
+
+        <!-- HÀNG 3: CHẶNG 7 ➔ 8 ➔ ĐÍCH VINH QUANG (Trái sang Phải) -->
+        <div class="map-tier tier-3">
+          <div class="milestone-anchor" id="node-7"></div>
+          <div class="milestone-anchor" id="node-8"></div>
+          <div class="milestone-anchor" id="node-finale"></div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER POSTER: TRÍCH DẪN DẤU BƯỚC CHÂN VÀ GHI CHÚ -->
+      <footer class="poster-footer">
+        <img src="footer_footprint_sketch.png" alt="Dấu bước chân trích dẫn" class="footer-quote-img">
+        <div class="footer-meta-info">
+          <div><strong>Trò chơi học tập tương tác:</strong> Hành trình tư tưởng Hồ Chí Minh</div>
+          <div>Bấm vào ảnh hoặc dấu chân tại mỗi chặng để trả lời câu hỏi và khám phá câu chuyện lịch sử!</div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- =========================================================
+       MODAL 1: CÂU HỎI TRẮC NGHIỆM (QUIZ MODAL)
+       ========================================================= -->
+  <div id="quizModal" class="modal-backdrop">
+    <div class="vintage-modal-card">
+      <button class="modal-close-btn" id="btnCloseQuiz">&times;</button>
+
+      <div class="modal-header-section">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 6px;">
+          <span id="quizBadge" class="modal-stage-pill">Chặng 1/9 • 1890 – 1911</span>
+          <div id="quizQuestionStepper" class="quiz-question-stepper"></div>
+        </div>
+        <h2 id="quizHeaderTitle" class="modal-title-text">Từ Làng Sen - Nghệ An</h2>
+      </div>
+
+      <!-- Ảnh minh họa chặng (toàn vẹn, không cắt mặt) -->
+      <div class="modal-photo-box">
+        <img id="quizStagePhoto" src="làng_sen.jpg" alt="Ảnh tư liệu">
+      </div>
+
+      <!-- Nội dung câu hỏi -->
+      <div class="quiz-question-box" id="quizQuestionContent">
+        Đang tải câu hỏi...
+      </div>
+
+      <!-- 4 lựa chọn A, B, C, D -->
+      <div class="quiz-answers-list" id="quizOptionsContainer"></div>
+
+      <!-- Khung phản hồi đáp án -->
+      <div id="quizFeedbackBox" class="quiz-result-feedback">
+        <div id="feedbackTitleText" style="font-weight: 800; margin-bottom: 4px;"></div>
+        <div id="feedbackDetailText" style="font-size: 0.88rem; line-height: 1.45;"></div>
+      </div>
+
+      <!-- Nút hành động chuyển câu hoặc mở khóa -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; flex-wrap: wrap; gap: 10px;">
+        <div id="quizReviewNav" style="display: none; gap: 8px;">
+          <button id="btnPrevQuestion" class="nav-btn">◀ Câu trước</button>
+          <button id="btnReviewNextQuestion" class="nav-btn">Câu sau ▶</button>
+        </div>
+        <div style="margin-left: auto; display: flex; gap: 10px;">
+          <button id="btnNextQuestion" class="nav-btn btn-accent" style="display: none; padding: 10px 22px; font-size: 0.95rem;">
+            Câu tiếp theo ➔
+          </button>
+          <button id="btnProceedUnlocked" class="nav-btn btn-accent" style="display: none; padding: 10px 22px; font-size: 0.95rem;">
+            ✨ Mở khóa nội dung & Tiến bước ➔
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 2: VINH QUANG TOÀN THẮNG (GRAND FINALE MODAL)
+       ========================================================= -->
+  <div id="finaleModal" class="modal-backdrop">
+    <div class="vintage-modal-card" style="text-align: center; max-width: 680px;">
+      <button class="modal-close-btn" id="btnCloseFinale">&times;</button>
+
+      <div style="width: 80px; height: 80px; background: radial-gradient(circle, #ffd700 0%, #d4931a 100%); border: 3px solid #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 40px; color: #8b181b; margin-bottom: 12px; box-shadow: 0 6px 25px rgba(212, 147, 26, 0.6);">
+        ★
+      </div>
+
+      <h2 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-red); font-weight: 900; margin-bottom: 6px;">
+        CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH TOÀN BỘ HÀNH TRÌNH!
+      </h2>
+
+      <div style="font-size: 1.05rem; color: var(--color-gold); font-weight: 800; text-transform: uppercase; margin-bottom: 14px;">
+        Hình thành và phát triển hệ thống tư tưởng Hồ Chí Minh
+      </div>
+
+      <p style="font-family: var(--font-serif); font-style: italic; color: var(--color-ink-muted); margin-bottom: 16px;">
+        “Một tư tưởng – Một con đường – Vì độc lập, tự do, hạnh phúc của dân tộc”
+      </p>
+
+      <div style="text-align: left; background: #fff; border: 1.5px solid var(--border-gold); border-radius: 10px; padding: 16px; margin-bottom: 20px;">
+        <h4 style="color: var(--color-red); margin-bottom: 10px;">🌟 Tổng kết cốt lõi Tư tưởng Hồ Chí Minh:</h4>
+        <ul style="padding-left: 18px; font-size: 0.9rem; line-height: 1.55;">
+          <li>Khởi nguồn từ truyền thống yêu nước nồng nàn và tinh hoa ngàn đời của dân tộc Việt Nam.</li>
+          <li>Hấp thụ và chắt lọc tinh hoa văn hóa nhân loại cả phương Đông và phương Tây qua 30 năm bôn ba.</li>
+          <li>Tiếp thu và vận dụng sáng tạo chủ nghĩa Mác – Lênin vào điều kiện lịch sử cụ thể của Việt Nam.</li>
+          <li>Kim chỉ nam soi đường cho cách mạng Việt Nam đi từ thắng lợi này đến thắng lợi vẻ vang khác.</li>
+        </ul>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <button id="btnReplayFinale" class="nav-btn btn-accent" style="padding: 10px 22px;">
+          🔄 Chơi lại từ đầu
+        </button>
+        <button id="btnCloseFinaleAction" class="nav-btn" style="padding: 10px 22px;">
+          📖 Xem lại toàn bộ hành trình
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 3: XEM ẢNH THIẾT KẾ GỐC (REFERENCE LIGHTBOX)
+       ========================================================= -->
+  <div id="referenceModal" class="modal-backdrop">
+    <div class="vintage-modal-card" style="max-width: 900px; padding: 16px;">
+      <button class="modal-close-btn" id="btnCloseReference">&times;</button>
+      <h3 style="font-family: var(--font-serif); color: var(--color-red); margin-bottom: 12px;">
+        Thiết kế đồ họa mẫu nguyên bản (landing.jpg)
+      </h3>
+      <div style="border: 2px solid var(--border-gold); border-radius: 8px; overflow: hidden; background: #1a0f0a;">
+        <img src="landing.jpg" alt="Ảnh mẫu gốc" style="width: 100%; height: auto; display: block;">
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 4: QUẢN LÝ & CHỈNH SỬA CÂU HỎI (QUIZ EDITOR)
+       ========================================================= -->
+  <div id="editorModal" class="modal-backdrop">
+    <div class="vintage-modal-card" style="max-width: 720px;">
+      <button class="modal-close-btn" id="btnCloseEditor">&times;</button>
+
+      <div class="modal-header-section">
+        <h2 class="modal-title-text">✏️ Quản lý & Chỉnh sửa bộ câu hỏi</h2>
+        <p style="font-size: 0.85rem; color: var(--color-ink-muted);">
+          Bạn có thể thay đổi nội dung câu hỏi, 4 đáp án và giải thích cho bất kỳ chặng nào. Dữ liệu được lưu ngay vào trình duyệt.
+        </p>
+      </div>
+
+      <!-- Danh sách tabs chọn chặng 1 -> 8 và Mốc 9 -->
+      <div id="editorTabsBar" style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px;"></div>
+
+      <!-- Danh sách tabs chọn câu hỏi 1, 2, 3 trong chặng -->
+      <div id="editorQuestionTabsBar" style="display: flex; gap: 6px; padding-bottom: 8px; margin-bottom: 14px; border-bottom: 1px dashed var(--border-parchment);"></div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <label style="font-weight: 700; font-size: 0.88rem; display: block; margin-bottom: 4px;">Nội dung câu hỏi:</label>
+          <textarea id="editQuestionInput" rows="3" style="width: 100%; padding: 10px; border: 1.5px solid var(--border-parchment); border-radius: 6px; font-family: var(--font-sans); font-size: 0.92rem;"></textarea>
+        </div>
+
+        <div>
+          <label style="font-weight: 700; font-size: 0.88rem; display: block; margin-bottom: 4px;">4 Lựa chọn đáp án:</label>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <input type="text" id="editOpt0" placeholder="Đáp án A" style="padding: 8px 12px; border: 1.5px solid var(--border-parchment); border-radius: 6px;">
+            <input type="text" id="editOpt1" placeholder="Đáp án B" style="padding: 8px 12px; border: 1.5px solid var(--border-parchment); border-radius: 6px;">
+            <input type="text" id="editOpt2" placeholder="Đáp án C" style="padding: 8px 12px; border: 1.5px solid var(--border-parchment); border-radius: 6px;">
+            <input type="text" id="editOpt3" placeholder="Đáp án D" style="padding: 8px 12px; border: 1.5px solid var(--border-parchment); border-radius: 6px;">
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <label style="font-weight: 700; font-size: 0.88rem;">Đáp án đúng:</label>
+          <select id="editCorrectSelect" style="padding: 6px 12px; border-radius: 6px; border: 1.5px solid var(--border-parchment); font-weight: 700;">
+            <option value="0">Đáp án A</option>
+            <option value="1">Đáp án B</option>
+            <option value="2">Đáp án C</option>
+            <option value="3">Đáp án D</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-weight: 700; font-size: 0.88rem; display: block; margin-bottom: 4px;">Lời giải thích khi trả lời đúng:</label>
+          <textarea id="editExplainInput" rows="2" style="width: 100%; padding: 10px; border: 1.5px solid var(--border-parchment); border-radius: 6px; font-family: var(--font-sans); font-size: 0.92rem;"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; gap: 8px;">
+            <button id="btnSaveQuestion" class="nav-btn btn-accent" style="padding: 8px 18px;">
+              💾 Lưu câu hỏi chặng này
+            </button>
+            <button id="btnResetDefaultQuestions" class="nav-btn" style="color: var(--color-red);">
+              Khôi phục mặc định
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <button id="btnExportJSON" class="nav-btn" title="Xuất dữ liệu câu hỏi ra tệp JSON">
+              📥 Xuất file JSON
+            </button>
+            <button id="btnImportJSON" class="nav-btn" title="Nạp câu hỏi từ tệp JSON">
+              📤 Nhập file JSON
+            </button>
+            <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hiệu ứng ăn mừng hoàn thành -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- NẠP CÁC SCRIPT HỆ THỐNG -->
+  <script src="js/data.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
