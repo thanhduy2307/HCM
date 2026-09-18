@@ -232,10 +232,12 @@ class StoryMapEngine {
     });
 
     // Quản lý câu hỏi
-    this.btnOpenEditor.addEventListener('click', () => {
-      window.soundSystem.playClick();
-      this.openEditorModal();
-    });
+    if (this.btnOpenEditor) {
+      this.btnOpenEditor.addEventListener('click', () => {
+        window.soundSystem.playClick();
+        this.openEditorModal();
+      });
+    }
 
     this.btnSaveQuestion.addEventListener('click', () => this.saveCurrentEditorQuestion());
 
