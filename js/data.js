@@ -3,7 +3,7 @@
  * Thiết kế bám sát bố cục poster gốc: Hành trình tư tưởng qua các bước ngoặt lịch sử
  */
 
-const HCM_DATA_VERSION = "2.0";
+const HCM_DATA_VERSION = "2.2";
 
 const DEFAULT_STAGES_DATA = [
   {
@@ -327,10 +327,10 @@ const DEFAULT_STAGES_DATA = [
     period: "1920 – 1930",
     stickyTag: "Quảng Châu - Liên Xô",
     locationTag: "Quảng Châu - Liên Xô",
-    mainImage: "thanh_lap_họi_cach_mang_thanh_nien.jpg",
+    mainImage: "thanh_lap_hoi_cach_mang_thanh_nien2.jpg",
     secondImage: "Truyen ba chu nghia maclenin vao VN.jpg",
     gallery: [
-      { src: "thanh_lap_họi_cach_mang_thanh_nien.jpg", caption: "Nguyễn Ái Quốc thành lập Hội Việt Nam Cách mạng Thanh niên tại Quảng Châu (1925)" },
+      { src: "thanh_lap_hoi_cach_mang_thanh_nien2.jpg", caption: "Nguyễn Ái Quốc và Báo Thanh Niên - Cơ quan ngôn luận của Hội Việt Nam Cách mạng Thanh niên (1925)" },
       { src: "Truyen ba chu nghia maclenin vao VN.jpg", caption: "Bác Hồ huấn luyện cán bộ và truyền bá chủ nghĩa Mác – Lênin vào Việt Nam" }
     ],
     bulletPoints: [
@@ -521,7 +521,10 @@ const FINALE_DATA = {
   period: "1945 – 1969 & Hiện nay",
   stickyTag: "Đích Vinh Quang",
   locationTag: "Toàn quốc",
-  mainImage: "finale_badge_art.png",
+  mainImage: "tu tuong hcm.jpg",
+  gallery: [
+    { src: "tu tuong hcm.jpg", caption: "Tư tưởng Hồ Chí Minh - Tài sản tinh thần vô giá của Đảng và dân tộc ta" }
+  ],
   slogan: "Một tư tưởng – Một con đường – Vì độc lập, tự do, hạnh phúc của dân tộc",
   quote: "“Tư tưởng Hồ Chí Minh là kết quả của cả một quá trình đấu tranh, tìm tòi, khám phá và phát triển không ngừng”",
   author: "Hồ Chí Minh",

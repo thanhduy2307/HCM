@@ -439,7 +439,7 @@ class StoryMapEngine {
         <div class="stage-number-badge" style="background: #ffd700; color: #8b181b; border: 2px solid #8b181b; font-weight: 900;">★</div>
         <div class="tape-sticky-tag" style="background: #ffd700; color: #8b181b; font-weight: 800;">Mốc 9 Ngôi Sao</div>
         <div class="finale-art-canvas" style="${borderStyle}">
-          <img src="finale_badge_art.png" alt="Hình thành và phát triển hệ thống tư tưởng Hồ Chí Minh">
+          <img src="${(this.finale && this.finale.mainImage) ? this.finale.mainImage : 'tu tuong hcm.jpg'}" alt="Hình thành và phát triển hệ thống tư tưởng Hồ Chí Minh">
         </div>
         ${isActive ? '<div class="polaroid-active-banner" style="display: block;">🌟 Mốc 9: Bấm giải đố 3 câu!</div>' : ''}
       </div>
